@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUsers = exports.createUser = void 0;
+exports.deleteUser = exports.getUsers = exports.createUser = void 0;
 var typeorm_1 = require("typeorm"); // getRepository"  traer una tabla de la base de datos asociada al objeto
 var Users_1 = require("./entities/Users");
 var utils_1 = require("./utils");
@@ -81,3 +81,22 @@ var getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
     });
 }); };
 exports.getUsers = getUsers;
+var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var usuarioRepo, USUARIO, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                usuarioRepo = typeorm_1.getRepository(Users_1.Users);
+                return [4 /*yield*/, usuarioRepo.findOne({ where: { id: req.params.id } })];
+            case 1:
+                USUARIO = _a.sent();
+                if (!USUARIO)
+                    throw new utils_1.Exception("El usuario no existe");
+                return [4 /*yield*/, usuarioRepo["delete"](USUARIO)];
+            case 2:
+                result = _a.sent();
+                return [2 /*return*/, res.json({ message: "Ok", result: result })];
+        }
+    });
+}); };
+exports.deleteUser = deleteUser;
