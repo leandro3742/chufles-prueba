@@ -8,12 +8,12 @@
  */
 import { Router } from 'express';
 import { safe } from './utils';
-import { createUser, deleteUser } from './actions';
+import { createUser, deleteUser, getUsers } from './actions';
 
 const router = Router();
 
 // signup route, creates a new user in the DB
 router.post('/user', safe(createUser));
 router.delete('/:id', safe(deleteUser));
-router.get('/user', safe(actions.getUsers));
+router.get('/user', safe(getUsers));
 export default router;

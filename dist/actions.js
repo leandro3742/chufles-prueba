@@ -50,16 +50,14 @@ var createUser = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     throw new utils_1.Exception("Please provide a first_name");
                 if (!req.body.last_name)
                     throw new utils_1.Exception("Please provide a last_name");
-                if (!req.body.email)
-                    throw new utils_1.Exception("Please provide an email");
-                if (!req.body.password)
-                    throw new utils_1.Exception("Please provide a password");
+                if (!req.body.cedula)
+                    throw new utils_1.Exception("Please provide an cedula");
                 userRepo = typeorm_1.getRepository(Users_1.Users);
-                return [4 /*yield*/, userRepo.findOne({ where: { email: req.body.email } })];
+                return [4 /*yield*/, userRepo.findOne({ where: { cedula: req.body.cedula } })];
             case 1:
                 user = _a.sent();
                 if (user)
-                    throw new utils_1.Exception("Users already exists with this email");
+                    throw new utils_1.Exception("Users already exists with this cedula");
                 newUser = typeorm_1.getRepository(Users_1.Users).create(req.body);
                 return [4 /*yield*/, typeorm_1.getRepository(Users_1.Users).save(newUser)];
             case 2:
